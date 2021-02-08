@@ -2,13 +2,13 @@ import React, { useRef, useMemo, useCallback } from 'react';
 import { ITableSearchFilters } from 'redux/dataTableSearch/types';
 
 import { useToggleState } from 'hooks/useToggleState';
-
+import { TableTagGroupSelect } from 'components/DataTableTags/TableTagGroupSelect';
+import { DataTableUploaderButton } from 'components/DataTableUploader/DataTableUploaderButton';
 import { Popover } from 'ui/Popover/Popover';
 import { ToggleSwitch } from 'ui/ToggleSwitch/ToggleSwitch';
 import { Title } from 'ui/Title/Title';
 import { IconButton } from 'ui/Button/IconButton';
 import { SearchBar } from 'ui/SearchBar/SearchBar';
-import { TableTagGroupSelect } from 'components/DataTableTags/TableTagGroupSelect';
 
 import './DataTableNavigatorSearch.scss';
 import { Button } from 'ui/Button/Button';
@@ -104,16 +104,23 @@ export const DataTableNavigatorSearch: React.FC<{
                 transparent
                 delayMethod="throttle"
             />
-            <IconButton
-                ref={filterButtonRef}
-                className=""
-                size={'18px'}
-                noPadding
-                onClick={toggleSearchFilter}
-                icon="sliders"
-                active={searchFiltersSize > 0}
-                ping={searchFiltersSize > 0 ? String(searchFiltersSize) : null}
-            />
+            <div className="flex-row search-controls-wrapper">
+                <IconButton
+                    className="table-filter-button"
+                    ref={filterButtonRef}
+                    size={'18px'}
+                    noPadding
+                    onClick={toggleSearchFilter}
+                    icon="sliders"
+                    active={searchFiltersSize > 0}
+                    ping={
+                        searchFiltersSize > 0 ? String(searchFiltersSize) : null
+                    }
+                    tooltip="filter"
+                    tooltipPos="down"
+                />
+                <DataTableUploaderButton className="ml8" />
+            </div>
             {searchFiltersPickerDOM}
         </div>
     );

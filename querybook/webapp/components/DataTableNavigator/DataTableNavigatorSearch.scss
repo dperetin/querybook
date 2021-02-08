@@ -3,8 +3,11 @@
     > .SearchBar {
         flex-grow: 1;
     }
-    > .IconButton {
+
+    .search-controls-wrapper {
         padding-right: 12px;
+    }
+    .table-filter-button {
         .ping-message {
             top: -5px;
             right: 6px;
